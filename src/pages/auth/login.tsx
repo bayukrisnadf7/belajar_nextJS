@@ -1,21 +1,9 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
+import LoginView from "@/views/Auth/Login"; 
 
 const LoginPage = () => {
-    // menggunakan next route
-    const { push } = useRouter();
-
-    const handlerProduct = () => {
-      push("/product");
-    }
+    
   return (
-    <div>
-      <h1>Login</h1>
-      <button onClick={() => handlerProduct()}>Product</button>
-      <p>
-        belum punya akun? <Link href="/auth/register" className="link-auth">Register</Link>
-      </p>
-    </div>
+    <LoginView />
   );
 };
 export default LoginPage;
