@@ -1,16 +1,13 @@
+import ProductView from "@/views/Product/Main";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
-type typeProduct = {
-  id: number;
-  name: string;
-  price: number;
-  qty: number;
-};
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const ProductPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [products, setProduct] =  useState<typeProduct[]>([]);
+  const [products, setProduct] =  useState([]);
   const { push } = useRouter();
 
   useEffect(() => {
@@ -18,24 +15,19 @@ const ProductPage = () => {
       push("/auth/login");
     }
   }, []);
-  useEffect(() => {
-    fetch("/api/product")
-      .then((res) => res.json())
-      .then((res) => {
-        setProduct(res.data);
-        // console.log(data);
-      });
-  }, []);
+
+  const {data, error, isLoading} = useSWR('/api/product', fetcher)
+//   useEffect(() => {
+//     fetch("/api/product")
+//       .then((res) => res.json())
+//       .then((res) => {
+//         setProduct(res.data);
+//         // console.log(data);
+//       });
+//   }, []);
   return (
     <>
-      <div>Product Page</div>
-      {products.map((product: typeProduct) => (
-        <div key={product.id}>
-          <h1>{product.name}</h1>
-          <p>{product.price}</p>
-          <p>{product.qty}</p>
-        </div>
-      ))}
+    <ProductView products={isLoading ? [] : data.data} />
     </>
   );
 };
