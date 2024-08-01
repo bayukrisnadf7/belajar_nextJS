@@ -9,8 +9,9 @@ const ProductPage  = (props: {products: typeProduct[]}) => {
 }
 
 export default ProductPage
-// ini adalah ssr atau server side rendering
-export async function getServerSideProps(){
+
+// ini adalah ssg atau static site generation 
+export async function getStaticProps(){
     // fetch data
     const res = await fetch('http://localhost:3000/api/product')
     const respone = await res.json()
