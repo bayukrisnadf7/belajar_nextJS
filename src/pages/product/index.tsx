@@ -2,8 +2,9 @@ import ProductView from "@/views/Product/Main";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import fetcher from "@/utils/swr/fetcher";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 
 const ProductPage = () => {
   const [isLogin, setIsLogin] = useState(true);
