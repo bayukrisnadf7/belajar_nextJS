@@ -17,6 +17,7 @@ const ProductPage = () => {
     }
   }, []);
 
+  // ini ada csr atau client side rendering
   const {data, error, isLoading} = useSWR('/api/product', fetcher)
 //   useEffect(() => {
 //     fetch("/api/product")

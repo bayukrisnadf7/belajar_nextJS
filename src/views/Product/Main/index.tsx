@@ -1,5 +1,6 @@
 import { typeProduct } from "@/types/product.type";
 import styles from "./Product.module.scss";
+import Link from "next/link";
 
 
 const ProductView = ({ products }: { products: typeProduct[] }) => {
@@ -10,7 +11,7 @@ const ProductView = ({ products }: { products: typeProduct[] }) => {
         <h1 className={styles.product__title}>Product Page</h1>
         <div className={styles.product__content}>
           {products.map((product: typeProduct) => (
-            <div key={product.id} className={styles.product__content__item}>
+            <Link href={`/product/${product.id}`} key={product.id} className={styles.product__content__item}>
               <img
                 src={product.image}
                 alt={product.name}
@@ -19,7 +20,7 @@ const ProductView = ({ products }: { products: typeProduct[] }) => {
               <h1 className={styles.product__content__item__name}>{product.name}</h1>
               <p className={styles.product__content__item__category}>{product.category}</p>
               <p className={styles.product__content__item__price}>{product.price.toLocaleString("id-ID", { style: "currency", currency: "IDR" })}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
