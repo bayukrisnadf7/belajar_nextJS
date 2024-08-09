@@ -1,12 +1,8 @@
-import Link from "next/link";
+import RegisterView from "@/views/Auth/Register";
+
 const RegisterPage = () => {
   return (
-    <div>
-      <h1>Register</h1>
-      <p>
-        sudah punya akun? <Link href="/auth/login" className="link-auth">Login</Link>
-      </p>
-    </div>
+    <RegisterView />
   );
 };
 
